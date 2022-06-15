@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app 
+  labels:
+    tier: app 
+    app: tomee 
+    role: ui
+spec:
+  containers:
+    - name: app 
+      image: docker.io/library/tomee:latest 
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      volumeMounts:
+        - name: appdata 
+          mountPath: /var/data/tomcat
+ 
+   
+ 
+  volumes:
+    - name: appdata
+      persistentVolumeClaim:
+        claimName: mongodb-pvc
