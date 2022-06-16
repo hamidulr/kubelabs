@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: web 
+spec:
+  replicas: 1
+  minReadySeconds: 20
+  selector:
+    matchLabels:
+      role: web 
+      app: nginx
+  template:
+    metadata:
+      name: web 
+      labels:
+        app: nginx 
+        role: web 
+        version: v3
+    spec:
+      containers:
+        - name: web 
+          image: nginx 
+          ports:
+            - containerPort: 80
+              protocol: TCP
