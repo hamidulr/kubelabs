@@ -6,11 +6,11 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 2
+      maxSurge: 1
       maxUnavailable: 0
   revisionHistoryLimit: 4
   paused: false
-  replicas: 8
+  replicas: 2
   minReadySeconds: 20
   selector:
     matchLabels:
@@ -32,3 +32,10 @@ spec:
           ports:
             - containerPort: 80
               protocol: TCP
+          resources:
+            requests:
+              cpu: 800m
+              memory: 512Mi
+            limits:
+              cpu: 1500m
+              memory: 1024Mi
